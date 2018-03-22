@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+<head>
+<title>Quiz</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<link href='../css/style.css' media='screen' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+  function popupCode(url) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+  
+  function toggleCode(id) {
+    var code = document.getElementById(id)
+  
+    code.style.display = code.style.display != 'block' ? 'block' : 'none'
+    return true
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+</script>
+</head>
+<body class='page'>
+<div class='class' id='wrapper'>
+<div class='header'>
+<h1 class='name'><span class='type'>class</span>
+Quiz
+</h1>
+<ol class='paths'>
+<li>
+<a href="../files/src/models/schema_rb.html">src/models/schema.rb</a>
+</li>
+</ol>
+<div class='parent'>
+Superclass:
+<strong>Sequel::Model</strong>
+</div>
+</div>
+<div id='content'>
+<div id='text'>
+<div id='description'>
+<p>Models a quiz</p>
+</div>
+<div id='method-list'>
+<h2>Methods</h2>
+<h3>Public Instance</h3>
+<ol>
+<li><a href="#method-i-populate">populate</a></li>
+</ol>
+</div>
+<div id='context'>
+</div>
+<div id='section'>
+<div id='methods'>
+<h2>Public Instance methods</h2>
+<div class='method public-instance' id='method-method-i-populate'>
+<a name='method-i-populate'></a>
+<div class='synopsis'>
+<span class='name'>populate</span>
+<span class='arguments'>(question_ids)</span>
+
+</div>
+<div class='description'>
+
+<p>Fill the quiz with questions given as ids in parameters</p>
+
+</div>
+<div class='source'>
+<a class='source-toggle' href='#' onclick='toggleCode(&#39;method-i-populate-source&#39;); return false'>
+[show source]
+</a>
+<pre id='method-i-populate-source'><span class="ruby-comment"># File src/models/schema.rb, line 62</span>&#x000A;<span class="ruby-keyword">def</span> <span class="ruby-identifier">populate</span>(<span class="ruby-identifier">question_ids</span>)&#x000A;  <span class="ruby-identifier">question_ids</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">question_id</span><span class="ruby-operator">|</span>&#x000A;    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">add_question</span>(<span class="ruby-constant">Question</span>[<span class="ruby-identifier">question_id</span>])&#x000A;  <span class="ruby-keyword">end</span>&#x000A;<span class="ruby-keyword">end</span></pre>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id='footer-push'></div>
+</div>
+<div id='footer'>
+<a href="https://github.com/rdoc/hanna-nouveau"><strong>Hanna Nouveau</strong> RDoc template</a>
+</div>
+</body>
+</html>

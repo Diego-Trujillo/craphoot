@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+<head>
+<title>README.rdoc</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<link href='../css/style.css' media='screen' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+  function popupCode(url) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+  
+  function toggleCode(id) {
+    var code = document.getElementById(id)
+  
+    code.style.display = code.style.display != 'block' ? 'block' : 'none'
+    return true
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+</script>
+</head>
+<body class='page'>
+<div class='file' id='wrapper'>
+<div class='header'>
+<h1 class='name'>README.rdoc
+</h1>
+<div class='paths'>
+README.rdoc
+</div>
+<div class='last-update'>
+Last Update:
+<span class='datetime'>2017-11-24 14:24:32 +0000</span>
+</div>
+</div>
+<div id='content'>
+<div id='text'>
+<div id='description'>
+<h1 id="label-Application+Design+and+Architecture">Application Design and Architecture<span><a href="#label-Application+Design+and+Architecture">&para;</a> <a href="#top">&uarr;</a></span></h1>
+<table class="rdoc-list note-list"><tbody><tr><td class='label'>Authors</td><td>
+<p>Andrea Iram Molina Orozco &amp; Diego Trujillo Norberto</p>
+</td></tr><tr><td class='label'>Date</td><td>
+<p>November 23, 2017</p>
+</td></tr></tbody></table>
+
+<p>This project is created for the S/W design architecture. The objective of
+the project is to create an interactive  platform for practicing knowledge
+of Software Design Patterns through the use of a simple quiz application.
+For the developers the project will help to develop skills like the ability
+to analyze and synthesize,  identifying and solving problems, and efficient
+use of computer systems.</p>
+
+<p>The directory structure for the application and its documentation is as
+follows:</p>
+
+<pre>quizapp/&#x000A;    ├─ doc/                        Folder produced by RDoc.&#x000A;    ├─ img/                        Folder for the documentation’s image files.&#x000A;    └─ src/                        Folder for the application’s source code.&#x000A;         ├─ public/                Folder for the server’s public documents.&#x000A;         │       └─ controllers/   Folder for the client-side Controllers.&#x000A;         │       └─ css/           Folder for the application’s CSS files.&#x000A;         │       └─ fonts/         Folder for the application’s font files.&#x000A;         │       └─ images/        Folder for the application’s image files.&#x000A;         │       └─ js/            Folder for the application template&#39;s Javascript files.&#x000A;         └─ models/                Folder for the application’s models.</pre>
+
+<p>The <code>builddocs.sh</code> shell script contains the required
+instructions to produce the RDoc documentation if it wasn&#39;t previously
+included. Run the script from the <code>quizapp</code> directory, typing at
+the terminal:</p>
+
+<pre>$ bash builddocs.sh</pre>
+
+<p>The root of the documentation should now be available at:
+<code>quizapp/doc/index.html</code></p>
+
+<p>The use of any ECMAScript 6 Compliant browser is required to run the
+application.</p>
+
+<h2 id="label-Installing+and+Running+the+Application">Installing and Running the Application<span><a href="#label-Installing+and+Running+the+Application">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>In order to propery run the application, Ruby 2.3 or higer is needed. The
+following gems need to be installed as well:</p>
+<ul><li>
+<p><a target="_top" href="http://www.sinatrarb.com/">Sinatra</a></p>
+</li><li>
+<p><a target="_top" href="http://sequel.jeremyevans.net/">SEQUEL</a></p>
+</li><li>
+<p><a href="https://github.com/macournoyer/thin">THIN</a></p>
+</li></ul>
+
+<p>To run the server type the following command at the terminal from the
+<code>/quizapp/src</code> directory:</p>
+
+<pre>$ ruby -I . server.rb</pre>
+
+<p>Afterwards, point your web browser the server’s root URL.</p>
+
+<h2 id="label-4-2B1+Architectural+View+Model">4+1 Architectural View Model<span><a href="#label-4-2B1+Architectural+View+Model">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="label-Logical+View">Logical View<span><a href="#label-Logical+View">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The logical view contains information about the various parts of the
+system. In UML the logical view is typically modeled using <em>class
+diagrams</em>.</p>
+
+<p>For example, the following figure represents the UML class diagram for the
+<code>quizapp</code> model in the server and client side:</p>
+
+<p><strong>Server side</strong></p>
+
+<p><img src="img/class_diagram-server.png"></p>
+
+<p><strong>Client Side</strong></p>
+
+<p><img src="img/class_diagram-client.png"></p>
+
+<p><strong>NOTE:</strong> Classes in client-side controllers are not shown in
+this documentation, you can check them out in the
+<code>/public/controllers/main.js</code> file. Every class and method used
+is perfectly documented.</p>
+
+<h3 id="label-Process+View">Process View<span><a href="#label-Process+View">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The process view focuses on the runtime behavior of the system. In UML,
+<em>activity diagrams</em> are used to model  this view. The following
+example shows the flow of the quizapp while being used by the player.</p>
+
+<p><img src="img/process_view.png"></p>
+
+<p>rf</p>
+
+<h3 id="label-Development+View">Development View<span><a href="#label-Development+View">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The development view focuses on software modules and subsystems. In UML,
+<em>package diagrams</em> are used to model the development view.</p>
+
+<p><img src="img/package_diagram.png"></p>
+
+<h3 id="label-Physical+View">Physical View<span><a href="#label-Physical+View">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>The physical view describes the physical deployment of the system,
+revealing which pieces of software run on what pieces of hardware. In UML,
+<em>deployment diagrams</em> are used to model the physical view. In the
+case of this application, most of the heavy lifting done for rendering
+question components is done by the user&#39;s browser.</p>
+
+<p><img src="img/deployment_diagram.png"></p>
+
+<h3 id="label-Scenarios">Scenarios<span><a href="#label-Scenarios">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>This view describes the functionality of the system from the perspective
+from outside world. It contains diagrams describing what the system is
+supposed to do from a black box perspective. UML <em>use case diagrams</em>
+are used for this view.</p>
+
+<p><img src="img/case.png"></p>
+
+<h2 id="label-Patterns+Used">Patterns Used<span><a href="#label-Patterns+Used">&para;</a> <a href="#top">&uarr;</a></span></h2>
+<ul><li>
+<p><strong>Domain-Specific Language</strong>: The <code>server.rb</code> file
+consists of a series of Sinatra <em>routes</em>. Sinatra is a DSL for
+creating web applications in Ruby.</p>
+</li><li>
+<p><strong>Model-View-Controller</strong>: The application follows an
+implementation of the MVC pattern. Model logic is concentrated on the
+<code>server.rb</code> and <code>/models/schema.rb</code> files. Views are
+placed in the <code>/public/index.html</code> file and controllers in
+<code>/public/controllers/main.js</code> file.</p>
+</li><li>
+<p><strong>Single Page Application</strong>: Although not strictly a design
+pattern, the concept of having all components present in the
+View-Controller layer form start and communicating with the server for data
+operations is used in this project.</p>
+</li><li>
+<p><strong>Simple Factory</strong>: The <code>ModalFactory</code> is used to
+create <em>SWAL Moodal</em> instances by specifying the desired title,
+message and html contents of the output. Methods are provided for generic
+error messages as well.</p>
+</li></ul>
+
+<h2 id="label-Acknowledgments">Acknowledgments<span><a href="#label-Acknowledgments">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>All of the questions in this application were taken from <a
+href="http://proquestcombo.safaribooksonline.com/book/web-development/ruby/9780321490452">Olsen</a>
+and <a target="_top" href="http://webcem01.cem.itesm.mx:8005/apps/s201713/">Ortiz</a>.</p>
+
+<p>We want to thank Professor Ariel Ortiz for being a guide through all these
+years.We hope that one day we get to proudly call him colleage.</p>
+
+<h2 id="label-References">References<span><a href="#label-References">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>Mention here any consulted books or web resources. Examples:</p>
+<ul><li>
+<p>IBM Corporation <em>UML Basics: An introduction to the Unified Modeling
+Language.</em>  IBM Developerworks. <a
+href="https://www.ibm.com/developerworks/rational/library/769.html">www.ibm.com/developerworks/rational/library/769.html</a>.</p>
+</li><li>
+<p>R. Olsen. <em>Design Patterns in Ruby.</em> Addison-Wesley, 2007. Available
+through <a
+href="http://proquestcombo.safaribooksonline.com/book/web-development/ruby/9780321490452">Safari
+Books Online</a>.</p>
+</li><li>
+<p>Sinatra  <em>Sinatra Docs</em> Sinatra RB <a
+href="http://sinatrarb.com/documentation.html">/http://sinatrarb.com/documentation.html</a>.</p>
+</li><li>
+<p>The Wikimedia Group <em>The 4+1 architectural view model</em> <a
+href="http://www.ics.uci.edu/~andre/ics223w2006/kruchten3.pdf">Wikipedia</a>
+Accessed November 24, 2017.</p>
+</li><li>
+<p>Ruby-Doc.org. <em>RDoc Markup Reference.</em> <a
+href="http://ruby-doc.org/stdlib-2.4.1/libdoc/rdoc/rdoc/RDoc/Markup.html">ruby-doc.org/stdlib-2.4.1/libdoc/rdoc/rdoc/RDoc/Markup.html</a>
+Accessed November 3, 2017.</p>
+</li></ul>
+</div>
+<div id='context'>
+</div>
+
+</div>
+</div>
+
+<div id='footer-push'></div>
+</div>
+<div id='footer'>
+<a href="https://github.com/rdoc/hanna-nouveau"><strong>Hanna Nouveau</strong> RDoc template</a>
+</div>
+</body>
+</html>

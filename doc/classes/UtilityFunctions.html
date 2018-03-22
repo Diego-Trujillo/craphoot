@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+<head>
+<title>UtilityFunctions</title>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
+<link href='../css/style.css' media='screen' rel='stylesheet' type='text/css'>
+<script type='text/javascript'>
+  function popupCode(url) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+  
+  function toggleCode(id) {
+    var code = document.getElementById(id)
+  
+    code.style.display = code.style.display != 'block' ? 'block' : 'none'
+    return true
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+</script>
+</head>
+<body class='page'>
+<div class='class' id='wrapper'>
+<div class='header'>
+<h1 class='name'><span class='type'>class</span>
+UtilityFunctions
+</h1>
+<ol class='paths'>
+<li>
+<a href="../files/src/server_rb.html">src/server.rb</a>
+</li>
+</ol>
+<div class='parent'>
+Superclass:
+<strong><a href="Object.html">Object</a></strong>
+</div>
+</div>
+<div id='content'>
+<div id='text'>
+<div id='description'>
+<h6 id="class-UtilityFunctions-label-UTILITY+FUNCTIONS">UTILITY FUNCTIONS<span><a href="#class-UtilityFunctions-label-UTILITY+FUNCTIONS">&para;</a> <a href="#top">&uarr;</a></span></h6>
+</div>
+<div id='method-list'>
+<h2>Methods</h2>
+<h3>Public Class</h3>
+<ol>
+<li><a href="#method-c-generate_question_list">generate_question_list</a></li>
+</ol>
+</div>
+<div id='context'>
+</div>
+<div id='section'>
+<div id='methods'>
+<h2>Public Class methods</h2>
+<div class='method public-class' id='method-method-c-generate_question_list'>
+<a name='method-c-generate_question_list'></a>
+<div class='synopsis'>
+<span class='name'>generate_question_list</span>
+<span class='arguments'>(question_number)</span>
+
+</div>
+<div class='description'>
+
+<p>Generates a list of unique question_id&#39;s for creating a new <a
+href="Quiz.html">Quiz</a>.</p>
+
+</div>
+<div class='source'>
+<a class='source-toggle' href='#' onclick='toggleCode(&#39;method-c-generate_question_list-source&#39;); return false'>
+[show source]
+</a>
+<pre id='method-c-generate_question_list-source'><span class="ruby-comment"># File src/server.rb, line 78</span>&#x000A;<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generate_question_list</span>(<span class="ruby-identifier">question_number</span>)&#x000A;  <span class="ruby-comment"># Initialize empty list</span>&#x000A;  <span class="ruby-identifier">used_question_ids</span> = []&#x000A;  <span class="ruby-comment"># Add as many questions as given argument</span>&#x000A;  <span class="ruby-value">1</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-identifier">question_number</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>&#x000A;    <span class="ruby-comment"># Get a random question id</span>&#x000A;    <span class="ruby-identifier">new_question_id</span> = <span class="ruby-identifier">@@rng</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">Question</span>.<span class="ruby-identifier">count</span>)&#x000A;    <span class="ruby-comment"># Ensures no repeated questions are added to the new quiz.</span>&#x000A;    <span class="ruby-keyword">while</span> <span class="ruby-identifier">used_question_ids</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">new_question_id</span> <span class="ruby-keyword">do</span>&#x000A;      <span class="ruby-identifier">new_question_id</span> = <span class="ruby-identifier">@@rng</span>.<span class="ruby-identifier">rand</span>(<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-constant">Question</span>.<span class="ruby-identifier">count</span>)&#x000A;    <span class="ruby-keyword">end</span> &#x000A;    <span class="ruby-comment"># When number is unique, push to list</span>&#x000A;    <span class="ruby-identifier">used_question_ids</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">new_question_id</span>)&#x000A;  <span class="ruby-keyword">end</span>&#x000A;  <span class="ruby-comment"># Return question ids</span>&#x000A;  <span class="ruby-identifier">used_question_ids</span>&#x000A;<span class="ruby-keyword">end</span></pre>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id='footer-push'></div>
+</div>
+<div id='footer'>
+<a href="https://github.com/rdoc/hanna-nouveau"><strong>Hanna Nouveau</strong> RDoc template</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+= Application Design and Architecture
+
+Authors::   Andrea Iram Molina Orozco & Diego Trujillo Norberto 
+Date::      November 23, 2017
+
+This project is created for the S/W design architecture. The objective of the project is to create an interactive 
+platform for practicing knowledge of Software Design Patterns through the use of a simple quiz application.
+For the developers the project will help to develop skills like the ability to analyze and synthesize, 
+identifying and solving problems, and efficient use of computer systems.
+
+
+The directory structure for the application and its documentation is as follows:
+
+      quizapp/
+          ├─ doc/                        Folder produced by RDoc.
+          ├─ img/                        Folder for the documentation’s image files.
+          └─ src/                        Folder for the application’s source code.
+               ├─ public/                Folder for the server’s public documents.
+               │       └─ controllers/   Folder for the client-side Controllers.
+               │       └─ css/           Folder for the application’s CSS files.
+               │       └─ fonts/         Folder for the application’s font files.
+               │       └─ images/        Folder for the application’s image files.
+               │       └─ js/            Folder for the application template's Javascript files.
+               └─ models/                Folder for the application’s models.
+
+The +builddocs.sh+ shell script contains the required instructions to produce the RDoc documentation if it wasn't previously included. Run the script from the +quizapp+ directory, typing at the terminal:
+
+    $ bash builddocs.sh                           
+
+The root of the documentation should now be available at: +quizapp/doc/index.html+
+
+The use of any ECMAScript 6 Compliant browser is required to run the application.
+
+== Installing and Running the Application
+
+In order to propery run the application, Ruby 2.3 or higer is needed. The following gems need to be installed as well:
+- {Sinatra}[http://www.sinatrarb.com/]
+- {SEQUEL}[http://sequel.jeremyevans.net/]
+- {THIN}[https://github.com/macournoyer/thin] 
+
+To run the server type the following command at the terminal from the +/quizapp/src+ directory:
+
+    $ ruby -I . server.rb
+
+Afterwards, point your web browser the server’s root URL.
+
+== 4+1 Architectural View Model
+
+=== Logical View
+
+The logical view contains information about the various parts of the system. In UML the logical view is typically modeled using <em>class diagrams</em>.
+
+For example, the following figure represents the UML class diagram for the +quizapp+ model in the server and client side:
+
+<b>Server side</b>
+
+rdoc-image:img/class_diagram-server.png
+
+<b>Client Side</b>
+
+rdoc-image:img/class_diagram-client.png
+
+<b>NOTE:</b> Classes in client-side controllers are not shown in this documentation, you can check them out in the +/public/controllers/main.js+ file. Every class and method used is perfectly documented.
+
+=== Process View
+
+The process view focuses on the runtime behavior of the system. In UML, <em>activity diagrams</em> are used to model 
+this view. The following example shows the flow of the quizapp while being used by the player.
+
+rdoc-image:img/process_view.png
+
+rf
+
+=== Development View
+
+The development view focuses on software modules and subsystems. In UML, <em>package diagrams</em> are used to model the development view.
+
+rdoc-image:img/package_diagram.png
+
+=== Physical View
+
+The physical view describes the physical deployment of the system, revealing which pieces of software run on what pieces of hardware. In UML, <em>deployment diagrams</em> are used to model the physical view. In the case of this application, most of
+the heavy lifting done for rendering question components is done by the user's browser.
+
+rdoc-image:img/deployment_diagram.png
+
+=== Scenarios
+
+This view describes the functionality of the system from the perspective from outside world. It contains diagrams describing what the system is supposed to do from a black box perspective. UML <em>use case diagrams</em> are used for this view.
+
+rdoc-image:img/case.png
+
+== Patterns Used
+
+
+- <b>Domain-Specific Language</b>: The +server.rb+ file consists of a series of Sinatra _routes_. Sinatra is a DSL for creating web applications in Ruby.
+- <b>Model-View-Controller</b>: The application follows an implementation of the MVC pattern. Model logic is concentrated on the +server.rb+ and +/models/schema.rb+ files. Views are placed in the +/public/index.html+ file and controllers in +/public/controllers/main.js+ file.
+- <b>Single Page Application</b>: Although not strictly a design pattern, the concept of having all components present in the View-Controller layer form start and communicating with the server for data operations is used in this project.
+- <b>Simple Factory</b>: The +ModalFactory+ is used to create <em>SWAL Moodal</em> instances by specifying the desired title, message and html contents of the output. Methods are provided for generic error messages as well.
+
+== Acknowledgments
+
+All of the questions in this application were taken from {Olsen}[http://proquestcombo.safaribooksonline.com/book/web-development/ruby/9780321490452] and {Ortiz}[http://webcem01.cem.itesm.mx:8005/apps/s201713/].
+
+We want to thank Professor Ariel Ortiz for being a guide through all these years.We hope that one day we get to proudly call him colleage.
+
+== References
+
+Mention here any consulted books or web resources. Examples:
+
+- \IBM Corporation <em>UML Basics: An introduction to the Unified Modeling Language.</em>  IBM Developerworks. {https://www.ibm.com/developerworks/rational/library/769.html}[https://www.ibm.com/developerworks/rational/library/769.html].
+
+- \R. Olsen. <em>Design Patterns in Ruby.</em> Addison-Wesley, 2007. Available through {Safari Books Online}[http://proquestcombo.safaribooksonline.com/book/web-development/ruby/9780321490452].
+
+- \Sinatra  <em>Sinatra Docs</em> Sinatra RB {/http://sinatrarb.com/documentation.html}[http://sinatrarb.com/documentation.html].
+
+- \The Wikimedia Group <em>The 4+1 architectural view model</em> {Wikipedia}[http://www.ics.uci.edu/~andre/ics223w2006/kruchten3.pdf] Accessed November 24, 2017.
+
+- Ruby-Doc.org. <em>RDoc Markup Reference.</em> {http://ruby-doc.org/stdlib-2.4.1/libdoc/rdoc/rdoc/RDoc/Markup.html}[http://ruby-doc.org/stdlib-2.4.1/libdoc/rdoc/rdoc/RDoc/Markup.html] Accessed November 3, 2017.
